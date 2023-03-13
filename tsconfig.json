@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    /* 基础选项 */
+    "target": "esnext" /* 指定 ECMAScript 目标版本：'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,
+    "module": "esnext" /* 输出的代码使用什么方式进行模块化： 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
+    "lib": [ /* 指定引用的标准库 */
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "esnext.String"
+    ],
+    "allowJs": true /* 允许编译 js 文件 */,
+    "allowSyntheticDefaultImports": true,
+    "removeComments": true /* 输出不包含注释 */,
+    /* 严格类型检查选项 */
+    "strict": true /* 启用所有严格类型检查选项 */,
+    "noImplicitAny": true /*  检查隐含 any 类型的表达式和声明 */,
+    "strictNullChecks": false /* 严格空检查. */,
+    /* 额外检查 */
+    "noUnusedLocals": true /* 检查无用的变量. */,
+    /* Module Resolution Options */
+    "moduleResolution": "node" /* 指定模块查找策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6) */,
+    "baseUrl": "./" /* 查找模块的基础目录 */,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    } /* 记录 baseUrl 的模块路径查找别名 */,
+    "types": [
+      "@types/node",
+      "@dcloudio/types"
+    ] /* 类型声明文件 */
+  },
+  "include": [ /* 指定编译处理的文件列表 */
+    "src/*.ts",
+  ]
+}
