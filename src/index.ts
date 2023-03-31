@@ -1,7 +1,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:48:09
- * @LastEditTime: 2023-03-31 14:19:30
+ * @LastEditTime: 2023-03-31 14:25:06
  * @LastEditors: 徐庆凯
  * @Description:
  * @FilePath: \uni-mini-router\src\index.ts
@@ -9,7 +9,7 @@
  */
 import { routerKey } from './symbols'
 import { getCurrentPageRoute, navjump, registerEachHooks, rewriteNavMethod, saveCurrRouteByCurrPage } from './router'
-import type { NavigationGuard, Route, RouteLocationRaw, Router, RouterOptions } from './interfaces/index'
+import type { AfterEachGuard, BeforeEachGuard, Route, RouteLocationRaw, Router, RouterOptions } from './interfaces/index'
 /**
  * Creates a Router instance that can be used by a Vue app.
  *
@@ -36,10 +36,10 @@ export function createRouter(options: RouterOptions): Router {
     back(level: number = 1) {
       return uni.navigateBack({ delta: level })
     },
-    beforeEach(userGuard: NavigationGuard) {
+    beforeEach(userGuard: BeforeEachGuard) {
       registerEachHooks(router, 'beforeHooks', userGuard)
     },
-    afterEach(userGuard: NavigationGuard) {
+    afterEach(userGuard: AfterEachGuard) {
       registerEachHooks(router, 'afterHooks', userGuard)
     },
     install: function (app: any): void {

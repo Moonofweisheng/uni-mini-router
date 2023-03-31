@@ -1,7 +1,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:48:09
- * @LastEditTime: 2023-03-31 13:59:18
+ * @LastEditTime: 2023-03-31 14:26:22
  * @LastEditors: 徐庆凯
  * @Description:
  * @FilePath: \uni-mini-router\src\interfaces\index.ts
@@ -21,16 +21,17 @@ export interface Router {
   replace(to: RouteLocationRaw): void
   replaceAll(to: RouteLocationRaw): void
   pushTab(to: RouteLocationRaw): void
-  beforeEach(userGuard: NavigationGuard): void // 全局前置路由守卫
-  afterEach(userGuard: NavigationGuard): void // 全局后置路由守卫
+  beforeEach(userGuard: BeforeEachGuard): void // 全局前置路由守卫
+  afterEach(userGuard: AfterEachGuard): void // 全局后置路由守卫
   install(App: any): void
 }
 
-export type NavigationGuard = (to: Route, from: Route, next?: (rule?: Route | boolean) => void) => void // 守卫函数
-export type HookListRule = Array<NavigationGuard>
+export type BeforeEachGuard = (to: Route, from: Route, next: (rule?: Route | boolean) => void) => void // 全局前置守卫函数
+export type AfterEachGuard = (to: Route, from: Route) => void // 全局后置守卫函数
+
 export interface GuardHooksConfig {
-  beforeHooks: HookListRule
-  afterHooks: HookListRule
+  beforeHooks: BeforeEachGuard[]
+  afterHooks: AfterEachGuard[]
 }
 
 export interface RouteLocationBase {

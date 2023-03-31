@@ -2,7 +2,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:56:28
- * @LastEditTime: 2023-03-31 14:14:16
+ * @LastEditTime: 2023-03-31 14:24:28
  * @LastEditors: 徐庆凯
  * @Description:
  * @FilePath: \uni-mini-router\src\router\index.ts
@@ -10,7 +10,7 @@
  */
 
 import qs from 'qs'
-import { NavigationGuard, HookType, NavMethod, NAVTYPE, Route, RouteLocationRaw, Router } from '../interfaces'
+import { AfterEachGuard, BeforeEachGuard, HookType, NavMethod, NAVTYPE, Route, RouteLocationRaw, Router } from '../interfaces'
 
 /**
  * 跳转至指定路由
@@ -127,8 +127,8 @@ export function getRouteByPath(path: string, router: Router): Route {
  * @param hookType 钩子类型
  * @param userGuard 守卫
  */
-export function registerEachHooks(router: Router, hookType: HookType, userGuard: NavigationGuard) {
-  router.guardHooks[hookType] = [userGuard]
+export function registerEachHooks(router: Router, hookType: HookType, userGuard: BeforeEachGuard | AfterEachGuard) {
+  router.guardHooks[hookType] = [userGuard as any]
 }
 // 保留uni默认的NavMethod
 const oldMethods: Record<string, Function> = {
@@ -179,7 +179,7 @@ export function rewriteNavMethod(router: Router) {
  * @param from 来源路由
  * @returns
  */
-export function guardToPromiseFn(guard: NavigationGuard, to: Route, from: Route) {
+export function guardToPromiseFn(guard: BeforeEachGuard, to: Route, from: Route) {
   return new Promise((reslove, reject) => {
     const next: ((rule?: Route | boolean) => void) | any = (rule?: Route | boolean) => {
       next._called = true
