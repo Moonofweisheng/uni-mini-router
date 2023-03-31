@@ -2,7 +2,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2022-11-18 14:56:37
- * @LastEditTime: 2023-03-13 19:04:00
+ * @LastEditTime: 2023-03-31 11:01:55
  * @LastEditors: 徐庆凯
  * @Description:
  * @FilePath: \uni-mini-router\rollup.config.js
@@ -49,7 +49,6 @@ const componentNames = fs
 // 当前运行环境，可通过 cross-env 命令行设置
 // const env = process.env.NODE_ENV
 // umd/iife 模式的编译结果文件输出的全局变量名称
-const name = 'uniReadPages'
 let output = [
   // es module
   {

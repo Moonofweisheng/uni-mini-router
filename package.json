@@ -8,7 +8,7 @@
     "clean:lib": "rimraf lib",
     "build:types": "npm run clean:lib && tsc -b ./tsconfig.types.json",
     "build": "npm run build:types && rollup -c && node ./typesCopy.js",
-    "dev": "rollup -c --watch",
+    "dev": "npm run build:types && rollup -c --watch && node ./typesCopy.js",
     "lint": "eslint --fix --ext .json,.js,.ts src",
     "test": "jest",
     "commit": "git-cz",
