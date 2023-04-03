@@ -2,7 +2,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:56:28
- * @LastEditTime: 2023-03-31 14:24:28
+ * @LastEditTime: 2023-04-03 22:50:29
  * @LastEditors: 徐庆凯
  * @Description:
  * @FilePath: \uni-mini-router\src\router\index.ts
@@ -144,7 +144,7 @@ const oldMethods: Record<string, Function> = {
  */
 export function rewriteNavMethod(router: Router) {
   NavMethod.forEach((name) => {
-    ;(uni as any)[name] = async function (options: any) {
+    ;(uni as any)[name] = function (options: any) {
       if (name === 'navigateBack') {
         oldMethods[name](options)
       } else {
