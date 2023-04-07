@@ -21,15 +21,16 @@ npm install uni-mini-router --save
 ```
 
 ## 开始
+项目根目录下创建router文件夹，并在该文件夹创建index.ts
 
-#### router.ts
+#### router/index.ts
 
 ```ts
 import { createRouter } from 'uni-mini-router'
 const router = createRouter({
   routes: [...ROUTES]
 })
-export router
+export default router
 ```
 
 #### main.ts
@@ -37,7 +38,7 @@ export router
 ```ts
 import { createSSRApp } from 'vue'
 import App from './App.vue'
-import { router } from './router/router'
+import router from './router'
 export function createApp() {
   const app = createSSRApp(App)
   app.use(router)
