@@ -2,11 +2,10 @@
 
 #### 介绍
 
-基于 uni-app 平台，提供类`vue-router`的路由，仅支持`vue3`，需要与[uni-read-pages-vite](https://gitee.com/fant-mini/uni-read-pages-vite)搭配使用。
+基于 uni-app 平台，提供类`vue-router`的路由，仅支持`vue3`，需要与[uni-read-pages-vite](https://gitee.com/fant-mini/uni-read-pages-vite)搭配使用。`uni-read-pages-vite`用于获取路由表。
 
-## 安装
+## 安装uni-mini-router
 
-您可以使用 `Yarn` 或 `npm` 安装该软件包（选择一个）：
 
 ##### Yarn
 
@@ -20,15 +19,57 @@ yarn add uni-mini-router -D
 npm install uni-mini-router --save
 ```
 
+## 安装uni-read-pages-vite
+##### Yarn
+
+```sh
+yarn add uni-read-pages-vite
+```
+##### npm
+
+```sh
+npm install uni-read-pages-vite
+```
+
+
 ## 开始
+
+### 配置uni-read-pages-vite
+配置 `vite.config.ts` 通过 `define` 注入全局变量 [查看文档](https://cn.vitejs.dev/config/shared-options.html#define)
+
+####  `vite.config.ts`
+```ts
+//vite.config.ts
+import { defineConfig } from "vite";
+import uni from "@dcloudio/vite-plugin-uni";
+import TransformPages from 'uni-read-pages-vite'
+const transformPages = new TransformPages()
+
+export default defineConfig({
+  plugins: [uni()],
+  define: {
+    ROUTES: transformPages.routes, // 注入路由表
+  }
+});
+```
+
+#### 声明文件`type.d.ts`
+`.d.ts`文件的作用是描述`JavaScript`库、模块或其他代码的类型声明和元数据，以便编辑器和开发者能够更好地理解和使用该代码。在编译时，`TypeScript`编译器会使用`.d.ts`文件来验证代码正确性，并帮助开发者在开发过程中提供更好的代码提示和自动补全功能。
+
+```ts
+//type.d.ts
+declare const ROUTES: []
+```
+
+### 配置uni-mini-router
 项目根目录下创建router文件夹，并在该文件夹创建index.ts
 
 #### router/index.ts
-
+此处的ROUTES就是[这里注入的](#`vite.config.ts`)
 ```ts
 import { createRouter } from 'uni-mini-router'
 const router = createRouter({
-  routes: [...ROUTES]
+  routes: [...ROUTES] // 路由表信息
 })
 export default router
 ```
@@ -50,25 +91,80 @@ export function createApp() {
 
 ## 使用
 
+### 编程式导航
+
+>注意：这里`name` 和 `params`搭配使用，而`path` 可以与 `query` 一起使用。
+
+#### 基础用法
+
 ```ts
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'uni-mini-router'
+import { getCurrentInstance } from 'vue'
+
+// 使用hooks（推荐）
 let router = useRouter()
-router.push({
-  name: 'name',
+
+// 或者 使用全局挂载的router
+router = instence?.appContext.config.globalProperties.$Router
+
+// 字符串路径
+router.push('/user')
+
+// 带有路径的对象
+router.push({ path: '/user' })
+
+// 命名的路由，并加上参数，让路由建立 url
+router.push({ name: 'user', params: { username: 'eduardo' } })
+
+// 带查询参数，结果是 /user?username=eduardo
+router.push({ path: '/user', query: { username: 'eduardo' } })
+
+</script>
+```
+
+在user.vue接收传入的对象参数
+```ts
+<script setup lang="ts">
+onLoad((option) => {
+  if (option && option.username) {
+    const username = option.username
+  }
 })
 </script>
 ```
-#### 或者
+#### 传递对象参数
+url有长度限制，太长的字符串会传递失败，可改用[窗体通信](https://uniapp.dcloud.net.cn/tutorial/page.html#%E9%A1%B5%E9%9D%A2%E9%80%9A%E8%AE%AF)、[全局变量](https://ask.dcloud.net.cn/article/35021)，另外参数中出现空格等特殊字符时需要对参数进行编码，如下为使用encodeURIComponent对参数进行编码的示例。
 
 ```ts
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useRouter } from 'uni-mini-router'
 import { getCurrentInstance } from 'vue'
-let instence = getCurrentInstance()
-let $Router = instence?.appContext.config.globalProperties.$Router
-$Router.push({
-    name: 'name',
+
+let router = useRouter()
+
+const user = {
+  name:'小星星',
+  label:"小熊熊"
+}
+
+// 命名的路由，传递对象参数
+router.push({ name: 'user', params: { user: encodeURIComponent(JSON.stringify(item)) } })
+
+// path+query，传递对象参数
+router.push({ path: '/user', query: { user: encodeURIComponent(JSON.stringify(item)) } })
+
+</script>
+```
+在user.vue接收传入的对象参数
+```ts
+<script setup lang="ts">
+onLoad((option) => {
+  if (option && option.user) {
+    const user = JSON.parse(decodeURIComponent(option.user))
+  }
 })
 </script>
 ```
