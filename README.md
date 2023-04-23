@@ -37,6 +37,8 @@ npm install uni-read-pages-vite
 ### 配置uni-read-pages-vite
 配置 `vite.config.ts` 通过 `define` 注入全局变量 [查看文档](https://cn.vitejs.dev/config/shared-options.html#define)
 
+>注意：在 Vite 中使用 `define` 注入的全局变量并不是热更新的，因为这些变量是在构建时被注入到代码中的，而不是在运行时动态生成的。这意味着如果您更新了`page.json`，则需要重新构建应用程序才能使更改生效。
+
 ####  `vite.config.ts`
 ```ts
 //vite.config.ts
@@ -151,10 +153,10 @@ const user = {
 }
 
 // 命名的路由，传递对象参数
-router.push({ name: 'user', params: { user: encodeURIComponent(JSON.stringify(item)) } })
+router.push({ name: 'user', params: { user: encodeURIComponent(JSON.stringify(user)) } })
 
 // path+query，传递对象参数
-router.push({ path: '/user', query: { user: encodeURIComponent(JSON.stringify(item)) } })
+router.push({ path: '/user', query: { user: encodeURIComponent(JSON.stringify(user)) } })
 
 </script>
 ```
