@@ -1,8 +1,8 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:48:09
- * @LastEditTime: 2023-03-31 14:25:06
- * @LastEditors: 徐庆凯
+ * @LastEditTime: 2023-04-23 20:49:22
+ * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\index.ts
  * 记得注释
@@ -49,10 +49,10 @@ export function createRouter(options: RouterOptions): Router {
       app.mixin({
         beforeCreate() {
           if (this.$mpType === 'page') {
+            saveCurrRouteByCurrPage(router)
             if (router.guardHooks.afterHooks && router.guardHooks.afterHooks[0]) {
               const from: Route = router.route
-              const to: Route = getCurrentPageRoute(router)
-              saveCurrRouteByCurrPage(router)
+              const to: Route = getCurrentPageRoute(router) // 当前页面路由信息
               router.guardHooks.afterHooks[0].call(null, to, from)
             }
           }

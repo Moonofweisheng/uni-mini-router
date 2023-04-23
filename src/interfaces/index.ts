@@ -1,8 +1,8 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:48:09
- * @LastEditTime: 2023-03-31 14:26:22
- * @LastEditors: 徐庆凯
+ * @LastEditTime: 2023-04-23 20:09:30
+ * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\interfaces\index.ts
  * 记得注释
@@ -13,9 +13,9 @@
  * Router instance.
  */
 export interface Router {
-  route: Route
-  routes: any
-  readonly guardHooks: GuardHooksConfig
+  route: Route // 路由元信息
+  routes: any // 路由表
+  readonly guardHooks: GuardHooksConfig // 守卫钩子
   back(level: number | undefined): void
   push(to: RouteLocationRaw): void
   replace(to: RouteLocationRaw): void
@@ -30,13 +30,13 @@ export type BeforeEachGuard = (to: Route, from: Route, next: (rule?: Route | boo
 export type AfterEachGuard = (to: Route, from: Route) => void // 全局后置守卫函数
 
 export interface GuardHooksConfig {
-  beforeHooks: BeforeEachGuard[]
-  afterHooks: AfterEachGuard[]
+  beforeHooks: BeforeEachGuard[] // 前置钩子
+  afterHooks: AfterEachGuard[] // 后置钩子
 }
 
 export interface RouteLocationBase {
-  animationType?: startAnimationType | endAnimationType
-  animationDuration?: number
+  animationType?: startAnimationType | endAnimationType // 动画类型
+  animationDuration?: number // 动画时间
 }
 
 export type startAnimationType =
@@ -59,25 +59,33 @@ export type endAnimationType =
   | 'zoom-in'
   | 'zoom-fade-in'
   | 'none'
+
+// name与params组合
 export interface RouteNameLocation extends RouteLocationBase {
   name: string
-  params?: Object
+  params?: Record<string, string>
 }
+
+// path与query组合
 export interface RoutePathLocation extends RouteLocationBase {
   path: string
-  query?: object
+  query?: Record<string, string>
 }
 export type RouteUrlLocation = string
 export type RouteLocationRaw = RouteUrlLocation | RouteNameLocation | RoutePathLocation
+
+// 路由表
 export interface RouterOptions {
   routes: any
 }
 
+// 路由元信息
 export interface Route {
   fullPath?: string
   name?: string
-  path: string
+  path?: string
   query?: Record<string, any>
+  params?: Record<string, any>
 }
 // export interface RouteRule {
 //   path: string // pages.json中的path 必须加上 '/' 开头

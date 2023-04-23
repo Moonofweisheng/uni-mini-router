@@ -2,15 +2,16 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:56:28
- * @LastEditTime: 2023-04-03 22:50:29
- * @LastEditors: 徐庆凯
+ * @LastEditTime: 2023-04-23 20:59:27
+ * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\router\index.ts
  * 记得注释
  */
 
-import qs from 'qs'
 import { AfterEachGuard, BeforeEachGuard, HookType, NavMethod, NAVTYPE, Route, RouteLocationRaw, Router } from '../interfaces'
+
+import { beautifyUrl, getUrlParams, queryStringify, setUrlParams } from '../utils'
 
 /**
  * 跳转至指定路由
@@ -21,6 +22,8 @@ import { AfterEachGuard, BeforeEachGuard, HookType, NavMethod, NAVTYPE, Route, R
  */
 export function navjump(to: RouteLocationRaw, router: Router, navType: NAVTYPE) {
   const url: string = getRoutePath(to, router)
+  // 修改路由表中路由元信息
+  modifyRoute(to, router)
   switch (navType) {
     case 'push':
       uni.navigateTo({ url: url })
@@ -41,6 +44,39 @@ export function navjump(to: RouteLocationRaw, router: Router, navType: NAVTYPE) 
 }
 
 /**
+ * 修改路由元信息
+ * @param to 目标路由
+ * @param router 路由实例
+ */
+function modifyRoute(to: RouteLocationRaw, router: Router) {
+  let path: string = '' // 路由路径
+  if (typeof to === 'string') {
+    path = beautifyUrl(`/${to.split('?')[0]}`)
+    // 通过path匹配路由
+    router.routes.forEach((item: { query: Record<string, any>; path: string }) => {
+      if (item.path === path) {
+        item.query = getUrlParams(to)
+      }
+    })
+  } else if ((to as any).name) {
+    // 通过name匹配路由
+    router.routes.forEach((item: { params: any; name: any }) => {
+      if (item.name === (to as any).name) {
+        item.params = (to as any).params
+      }
+    })
+  } else if ((to as any).path) {
+    path = beautifyUrl(`/${(to as any).path.split('?')[0]}`)
+    // 通过path匹配路由
+    router.routes.find((item: { query: any; path: string }) => {
+      if (item.path === path) {
+        item.query = { ...getUrlParams((to as any).path), ...((to as any).query || {}) }
+      }
+    })
+  }
+}
+
+/**
  * 获取目标路径
  * @param to 目标页面
  * @param router
@@ -48,12 +84,13 @@ export function navjump(to: RouteLocationRaw, router: Router, navType: NAVTYPE) 
  */
 function getRoutePath(to: RouteLocationRaw, router: Router): string {
   let url: string = '' // 路径
-  let query: Record<string, any> = {}
+  let query: Record<string, string> = {}
   if (typeof to === 'string') {
     url = to
   } else {
     if ((to as any).name) {
-      const route = router.routes.find((item: { name: any }) => {
+      // 通过name匹配路由
+      const route = router.routes.find((item: { name: string }) => {
         return item.name === (to as any).name
       })
       if (route && route.path) {
@@ -62,12 +99,13 @@ function getRoutePath(to: RouteLocationRaw, router: Router): string {
         throw new Error('当前路由表匹配规则已全部匹配完成，未找到满足的匹配规则。')
       }
       query = (to as any).params
-    } else {
-      url = (to as any).path
-      query = (to as any).query
+    } else if ((to as any).path) {
+      url = beautifyUrl(`/${(to as any).path.split('?')[0]}`)
+      query = { ...getUrlParams((to as any).path), ...((to as any).query || {}) }
     }
     if (query) {
-      url = url + qs.stringify(query)
+      query = queryStringify(query)
+      url = setUrlParams(url, query)
     }
   }
   return url
@@ -90,7 +128,9 @@ export function getCurrentPage() {
  */
 export function saveCurrRouteByCurrPage(router: Router) {
   const currRoute: Route = getCurrentPageRoute(router)
-  router.route = currRoute
+  router.route = JSON.parse(JSON.stringify(currRoute))
+  delete currRoute.params
+  delete currRoute.query
 }
 
 /**
@@ -154,7 +194,7 @@ export function rewriteNavMethod(router: Router) {
             .then((resp: any) => {
               if (resp && resp.to) {
                 const path = getRoutePath(resp.to, router)
-                if (path && path !== options.url) {
+                if (path && path !== options.url.split('?')[0]) {
                   oldMethods[name]({ url: path })
                 } else {
                   oldMethods[name](options)
