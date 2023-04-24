@@ -91,6 +91,68 @@ export function createApp() {
 }
 ```
 
+### 配置pages.json
+在pages.json中为页面路由指定`name`字段后，即可以使用`name`跳转
+>注意：此处定义的`name`字段必须全局唯一。
+```json
+//  pages.json
+{
+  "pages": [{
+      "path": "pages/home/Home",
+      "name": "home", // 路由 name 用于命名路由的跳转
+      "style": {
+        "mp-alipay": {
+          "allowsBounceVertical": "NO"
+        },
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/login/Login",
+      "name": "login",
+      "style": {
+        "mp-alipay": {
+          "allowsBounceVertical": "NO"
+        },
+        "navigationBarTitleText": ""
+      }
+    },
+    {
+      "path": "pages/mine/Mine",
+      "name": "mine",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationBarBackgroundColor": "#E7F0FF"
+      }
+    }
+  ],
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#0165FF",
+    "backgroundColor": "#ffffff",
+    "list": [{
+        "pagePath": "pages/home/Home",
+        "iconPath": "static/icon_home.png",
+        "selectedIconPath": "static/icon_home_selected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/mine/Mine",
+        "iconPath": "static/icon_mine.png",
+        "selectedIconPath": "static/icon_mine_selected.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#FFF",
+    "backgroundColor": "#F8F8F8"
+  }
+}
+```
+
+
 ## 使用
 
 ### 编程式导航
