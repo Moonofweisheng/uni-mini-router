@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.5...v0.0.6) (2023-04-27)
+
+
+### Features
+
+* ✨ 新增 useRoute 方法用于获取当前路由信息 ([def969e](https://gitee.com/fant-mini/uni-mini-router/commit/def969e2bf338ec3e0eeb6db45039d6a0d102258))
+
 ### [0.0.5](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.4...v0.0.5) (2023-04-23)
 
 
