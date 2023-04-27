@@ -1,7 +1,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:48:09
- * @LastEditTime: 2023-04-23 20:09:30
+ * @LastEditTime: 2023-04-27 13:25:52
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\interfaces\index.ts
@@ -9,11 +9,13 @@
  */
 /* eslint-disable @typescript-eslint/ban-types */
 
+import { Ref } from 'vue'
+
 /**
  * Router instance.
  */
 export interface Router {
-  route: Route // 路由元信息
+  route: Ref<Route> // 当前路由信息
   routes: any // 路由表
   readonly guardHooks: GuardHooksConfig // 守卫钩子
   back(level: number | undefined): void
@@ -74,12 +76,12 @@ export interface RoutePathLocation extends RouteLocationBase {
 export type RouteUrlLocation = string
 export type RouteLocationRaw = RouteUrlLocation | RouteNameLocation | RoutePathLocation
 
-// 路由表
+// 创建路由实例的选项
 export interface RouterOptions {
   routes: any
 }
 
-// 路由元信息
+// 路由信息
 export interface Route {
   fullPath?: string
   name?: string

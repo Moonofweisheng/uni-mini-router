@@ -39,7 +39,7 @@ npm install uni-read-pages-vite
 
 >注意：在 Vite 中使用 `define` 注入的全局变量并不是热更新的，因为这些变量是在构建时被注入到代码中的，而不是在运行时动态生成的。这意味着如果您更新了`page.json`，则需要重新构建应用程序才能使更改生效。
 
-####  `vite.config.ts`
+#### 配置vite.config.ts
 ```ts
 //vite.config.ts
 import { defineConfig } from "vite";
@@ -67,7 +67,7 @@ declare const ROUTES: []
 项目根目录下创建router文件夹，并在该文件夹创建index.ts
 
 #### router/index.ts
-此处的ROUTES就是[这里注入的](#`vite.config.ts`)
+此处的ROUTES就是[配置vite.config.ts](#配置vite.config.ts)步骤中注入的
 ```ts
 import { createRouter } from 'uni-mini-router'
 const router = createRouter({
@@ -76,7 +76,7 @@ const router = createRouter({
 export default router
 ```
 
-#### main.ts
+#### 配置main.ts
 
 ```ts
 import { createSSRApp } from 'vue'
@@ -269,4 +269,74 @@ router.afterEach((to, from) => {
 })
 ```
 它对于分析、更改页面标题、声明页面等辅助功能以及许多其他事情都很有用。
+
+### API 文档
+
+#### createRouter
+
+▸ createRouter(options): `Router`
+
+创建一个可以被 Vue 应用使用的 Router 实例。
+
+##### 参数
+| 名称 | 类型 |描述|
+| --- | --- | -- |
+| options | `RouterOptions` |`RouterOptions`|
+
+##### 返回值
+`Router`
+
+
+#### useRouter
+
+▸ useRouter(): `Router`
+
+返回路由器实例。相当于在模板中使用 $Router。
+
+>不可以脱离 Vue 上下文使用
+
+##### 返回值
+
+`Router`
+
+
+
+#### useRoute
+
+▸ useRoute(): `Route`
+
+返回当前的路由地址信息。相当于在模板中使用 $Route。  
+
+>不可以脱离 Vue 上下文使用，且只能在页面`mount`之后才可与使用。当使用场景为外部链接跳转进入或H5页面刷新时，默认从当前链接中取得query参数并放在`Route`的`query`字段中，这种场景建议走`onLoad`声明周期获取参数。
+
+##### 返回值
+
+`Route`
+
+#### Router实例方法
+
+##### push方法
+
+▸ router.push(target:RouteLocationRaw): void
+
+保留当前页面，跳转到应用内的某个页面，相当于使用 `uni.navigateTo(OBJECT)`。  
+
+
+##### pushTab方法
+
+▸ router.pushTab(target:RouteLocationRaw): void
+
+跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面，相当于使用 `uni.switchTab(OBJECT)`。
+
+##### replace方法
+
+▸ router.replace(target:RouteLocationRaw): void
+
+关闭当前页面，跳转到应用内的某个页面，相当于使用 `uni.redirectTo(OBJECT)`。  
+
+##### replaceAll方法
+
+▸ router.replaceAll(target:RouteLocationRaw): void
+
+关闭所有页面，打开到应用内的某个页面，相当于使用 `uni.reLaunch(OBJECT)`。
 

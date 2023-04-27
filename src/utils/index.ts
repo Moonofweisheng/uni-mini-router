@@ -1,7 +1,7 @@
 /*
  * @Author: weisheng
  * @Date: 2023-04-23 13:19:59
- * @LastEditTime: 2023-04-23 20:12:38
+ * @LastEditTime: 2023-04-27 12:45:37
  * @LastEditors: weisheng
  * @Description:url工具
  * @FilePath: \uni-mini-router\src\utils\index.ts
@@ -84,4 +84,13 @@ export function queryStringify(query: Record<string, string>) {
     }
   }
   return result
+}
+
+/**
+ * 判断query或params是否为空或者undefined
+ * @param obj 待判断对象
+ * @returns
+ */
+export function isEmptyObject(obj: undefined | null | Record<string, any>): boolean {
+  return obj === undefined || obj === null || Object.keys(obj).length === 0
 }

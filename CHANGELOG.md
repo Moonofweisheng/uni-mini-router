@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* ✨ 支持query和params传参，路由元信息增加query和params ([dbe3222](https://gitee.com/fant-mini/uni-mini-router/commit/dbe322274e48f59e92332df38073d6d8f088a993))
+* ✨ 支持query和params传参，路由信息增加query和params ([dbe3222](https://gitee.com/fant-mini/uni-mini-router/commit/dbe322274e48f59e92332df38073d6d8f088a993))
 
 ### [0.0.4](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.3...v0.0.4) (2023-04-04)
 

@@ -2,7 +2,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:56:28
- * @LastEditTime: 2023-04-23 20:59:27
+ * @LastEditTime: 2023-04-27 13:16:58
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\router\index.ts
@@ -22,7 +22,7 @@ import { beautifyUrl, getUrlParams, queryStringify, setUrlParams } from '../util
  */
 export function navjump(to: RouteLocationRaw, router: Router, navType: NAVTYPE) {
   const url: string = getRoutePath(to, router)
-  // 修改路由表中路由元信息
+  // 修改路由表中路由信息
   modifyRoute(to, router)
   switch (navType) {
     case 'push':
@@ -38,13 +38,14 @@ export function navjump(to: RouteLocationRaw, router: Router, navType: NAVTYPE) 
       uni.reLaunch({ url: url })
       break
     default:
-      throw new Error('路由类型不正确')
+      throw new Error('无效的路由类型，请确保提供正确的路由类型')
+    // throw new Error('Invalid route type provided. Please ensure the provided route is of the correct type.')
   }
   return
 }
 
 /**
- * 修改路由元信息
+ * 修改路由信息
  * @param to 目标路由
  * @param router 路由实例
  */
@@ -96,7 +97,8 @@ function getRoutePath(to: RouteLocationRaw, router: Router): string {
       if (route && route.path) {
         url = route.path
       } else {
-        throw new Error('当前路由表匹配规则已全部匹配完成，未找到满足的匹配规则。')
+        throw new Error('您正在尝试访问的路由未在路由表中定义。请检查您的路由配置。')
+        // throw new Error('The route you are trying to access is not defined in the routing table. Please check your routing configuration.')
       }
       query = (to as any).params
     } else if ((to as any).path) {
@@ -121,20 +123,20 @@ export function getCurrentPage() {
 }
 
 /**
- * 保存路由元信息到路由实例
+ * 保存路由信息到路由实例
  * @param router 路由实例
  * @param query 路由参数
  * @returns
  */
 export function saveCurrRouteByCurrPage(router: Router) {
   const currRoute: Route = getCurrentPageRoute(router)
-  router.route = JSON.parse(JSON.stringify(currRoute))
+  router.route.value = JSON.parse(JSON.stringify(currRoute))
   delete currRoute.params
   delete currRoute.query
 }
 
 /**
- * 获取当前页面的路由元信息
+ * 获取当前页面的路由信息
  * @param router router实例
  * @returns
  */
@@ -148,10 +150,10 @@ export function getCurrentPageRoute(router: Router): Route {
 }
 
 /**
- * 通过页面路路径寻找路由元信息
+ * 通过页面路路径寻找路由信息
  * @param path 页面路径
  * @param router 路由实例
- * @returns 路由元信息
+ * @returns 路由信息
  */
 export function getRouteByPath(path: string, router: Router): Route {
   path = path.split('?')[0]
@@ -190,7 +192,7 @@ export function rewriteNavMethod(router: Router) {
       } else {
         if (router.guardHooks.beforeHooks && router.guardHooks.beforeHooks[0]) {
           const to: Route = getRouteByPath(options.url, router)
-          guardToPromiseFn(router.guardHooks.beforeHooks[0], to, router.route)
+          guardToPromiseFn(router.guardHooks.beforeHooks[0], to, router.route.value)
             .then((resp: any) => {
               if (resp && resp.to) {
                 const path = getRoutePath(resp.to, router)
