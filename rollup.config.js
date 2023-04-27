@@ -2,8 +2,8 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2022-11-18 14:56:37
- * @LastEditTime: 2023-03-31 11:01:55
- * @LastEditors: 徐庆凯
+ * @LastEditTime: 2023-04-27 15:23:38
+ * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\rollup.config.js
  * 记得注释
@@ -25,9 +25,11 @@ import {
 } from 'rollup-plugin-terser'
 import pkg from './package.json'
 
+const now = new Date()
+
 const banner = `/*!
  * ${pkg.name} v${pkg.version}
- * ${new Date().getFullYear()} weisheng
+ * ${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} weisheng
  */`
 const componentRoot = path.join(__dirname, './src')
 const componentNames = fs
