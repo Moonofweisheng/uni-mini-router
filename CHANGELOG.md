@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.6...v0.0.7) (2023-04-27)
+
+
+### Features
+
+* ✨ router.back方法入参改为可选参数 ([1924288](https://gitee.com/fant-mini/uni-mini-router/commit/1924288b9910685300f584380f5bf1ced6822490))
+
 ### [0.0.6](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.5...v0.0.6) (2023-04-27)
 
 
