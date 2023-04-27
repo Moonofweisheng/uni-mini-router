@@ -1,7 +1,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:48:09
- * @LastEditTime: 2023-04-27 13:25:52
+ * @LastEditTime: 2023-04-27 15:52:35
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\interfaces\index.ts
@@ -18,7 +18,7 @@ export interface Router {
   route: Ref<Route> // 当前路由信息
   routes: any // 路由表
   readonly guardHooks: GuardHooksConfig // 守卫钩子
-  back(level: number | undefined): void
+  back(level?: number): void
   push(to: RouteLocationRaw): void
   replace(to: RouteLocationRaw): void
   replaceAll(to: RouteLocationRaw): void
