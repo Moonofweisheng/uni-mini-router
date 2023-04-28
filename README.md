@@ -1,8 +1,15 @@
 # uni-mini-router
 
 #### 介绍
+`uni-mini-router`是一个基于`vue3`和`uni-app`框架的轻量级路由库，它提供了类似`Vue Router`的API和功能，可以帮助开发者实现在uni-app中进行路由跳转、传参、拦截等常用操作。
 
-基于 uni-app 平台，提供类`vue-router`的路由，仅支持`vue3`，需要与[uni-read-pages-vite](https://gitee.com/fant-mini/uni-read-pages-vite)搭配使用。`uni-read-pages-vite`用于获取路由表。
+`uni-mini-router`支持多种跳转方式，包括普通跳转、重定向、切换TabBar页面等。它也提供了一些高级特性，如路由拦截、编程式导航等。
+
+总之，如果你在`uni-app`开发过程中需要使用到路由功能，可以考虑使用`uni-mini-router`来简化你的开发工作。
+
+值得注意的是，`uni-mini-router`需要与[uni-read-pages-vite](https://www.npmjs.com/package/uni-read-pages-vite)搭配使用。`uni-read-pages-vite`用于获取路由表。
+
+#### 演示项目:[vue3+vite+axios+pinia+fant-mini-plus基础模板](https://ext.dcloud.net.cn/plugin?id=11846)
 
 ## 安装uni-mini-router
 
