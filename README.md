@@ -237,6 +237,11 @@ onLoad((option) => {
     const user = JSON.parse(decodeURIComponent(option.user))
   }
 })
+
+// 返回
+function back() {
+  router.back()
+}
 </script>
 ```
 
@@ -347,3 +352,8 @@ router.afterEach((to, from) => {
 
 关闭所有页面，打开到应用内的某个页面，相当于使用 `uni.reLaunch(OBJECT)`。
 
+##### back方法
+
+▸ router.back(level?: number): void
+
+关闭当前页面，返回上一页面或多级页面，相当于使用 `uni.navigateBack(OBJECT)`。
