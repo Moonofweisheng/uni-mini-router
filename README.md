@@ -47,17 +47,32 @@ npm install uni-read-pages-vite
 >注意：在 Vite 中使用 `define` 注入的全局变量并不是热更新的，因为这些变量是在构建时被注入到代码中的，而不是在运行时动态生成的。这意味着如果您更新了`page.json`，则需要重新构建应用程序才能使更改生效。
 
 #### 配置vite.config.ts
+##### CLI创建的项目配置
 ```ts
 //vite.config.ts
 import { defineConfig } from "vite";
 import uni from "@dcloudio/vite-plugin-uni";
 import TransformPages from 'uni-read-pages-vite'
-const transformPages = new TransformPages()
 
 export default defineConfig({
   plugins: [uni()],
   define: {
-    ROUTES: transformPages.routes, // 注入路由表
+    ROUTES: new TransformPages().routes, // 注入路由表
+  }
+});
+```
+
+##### HbuilderX创建的项目配置
+```ts
+//vite.config.ts
+import { defineConfig } from "vite";
+import uni from "@dcloudio/vite-plugin-uni";
+import TransformPages from 'uni-read-pages-vite'
+
+export default defineConfig({
+  plugins: [uni()],
+  define: {
+    ROUTES: new TransformPages(__dirname).routes, // 注入路由表
   }
 });
 ```
