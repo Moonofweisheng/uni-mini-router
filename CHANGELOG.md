@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.7...v0.0.8) (2023-05-06)
+
+
+### Bug Fixes
+
+* 🐛 修复未配置导航守卫时无法跳转的问题 ([a646f52](https://gitee.com/fant-mini/uni-mini-router/commit/a646f52b31285fad51d4f0c9e5b188711d140269))
+
 ### [0.0.7](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.6...v0.0.7) (2023-04-27)
 
 
