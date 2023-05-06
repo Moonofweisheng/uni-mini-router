@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.8...v0.0.9) (2023-05-06)
+
 ### [0.0.8](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.7...v0.0.8) (2023-05-06)
 
 
