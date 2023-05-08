@@ -2,7 +2,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:56:28
- * @LastEditTime: 2023-05-08 14:03:17
+ * @LastEditTime: 2023-05-08 15:41:45
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\router\index.ts
@@ -216,8 +216,7 @@ export function rewriteNavMethod(router: Router) {
                   oldMethods['navigateBack'](resp)
                 } else {
                   const url: string = getRoutePath(resp as RouteLocationRaw, router)
-                  name = resp.navType ? NavTypeEnum[resp.navType] : name
-                  oldMethods[name]({ url: url })
+                  oldMethods[resp.navType ? NavTypeEnum[resp.navType] : name]({ url: url })
                 }
               }
             })
