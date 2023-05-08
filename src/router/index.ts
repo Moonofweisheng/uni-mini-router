@@ -2,14 +2,26 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:56:28
- * @LastEditTime: 2023-05-06 20:06:00
+ * @LastEditTime: 2023-05-08 14:03:17
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\router\index.ts
  * 记得注释
  */
 
-import { AfterEachGuard, BeforeEachGuard, HookType, NavMethod, NAVTYPE, Route, RouteLocationRaw, Router } from '../interfaces'
+import {
+  AfterEachGuard,
+  BeforeEachGuard,
+  HookType,
+  NavMethod,
+  NAVTYPE,
+  NavTypeEnum,
+  NextRouteBackLocation,
+  NextRouteLocationRaw,
+  Route,
+  RouteLocationRaw,
+  Router
+} from '../interfaces'
 
 import { beautifyUrl, getUrlParams, queryStringify, setUrlParams } from '../utils'
 
@@ -157,8 +169,8 @@ export function getCurrentPageRoute(router: Router): Route {
  */
 export function getRouteByPath(path: string, router: Router): Route {
   path = path.split('?')[0]
-  const route: Route = router.routes.find((route: { path: string }) => {
-    return route.path === path
+  const route: Route = router.routes.find((route: Route) => {
+    return route.path === path || route.aliasPath === path
   })
   return route
 }
@@ -193,16 +205,20 @@ export function rewriteNavMethod(router: Router) {
         if (router.guardHooks.beforeHooks && router.guardHooks.beforeHooks[0]) {
           const to: Route = getRouteByPath(options.url, router)
           guardToPromiseFn(router.guardHooks.beforeHooks[0], to, router.route.value)
-            .then((resp: any) => {
-              if (resp && resp.to) {
-                const path = getRoutePath(resp.to, router)
-                if (path && path !== options.url.split('?')[0]) {
-                  oldMethods[name]({ url: path })
-                } else {
-                  oldMethods[name](options)
-                }
-              } else {
+            .then((resp) => {
+              if (resp === true) {
                 oldMethods[name](options)
+              } else {
+                if (typeof resp === 'string') {
+                  const url: string = getRoutePath(resp, router)
+                  oldMethods[name]({ url: url })
+                } else if ((resp as NextRouteBackLocation).navType === 'back') {
+                  oldMethods['navigateBack'](resp)
+                } else {
+                  const url: string = getRoutePath(resp as RouteLocationRaw, router)
+                  name = resp.navType ? NavTypeEnum[resp.navType] : name
+                  oldMethods[name]({ url: url })
+                }
               }
             })
             .catch((error) => {
@@ -224,15 +240,15 @@ export function rewriteNavMethod(router: Router) {
  * @returns
  */
 export function guardToPromiseFn(guard: BeforeEachGuard, to: Route, from: Route) {
-  return new Promise((reslove, reject) => {
-    const next: ((rule?: Route | boolean) => void) | any = (rule?: Route | boolean) => {
+  return new Promise<NextRouteLocationRaw | true>((reslove, reject) => {
+    const next: ((rule?: NextRouteLocationRaw | boolean) => void) | any = (rule?: NextRouteLocationRaw | boolean) => {
       next._called = true
       if (rule === false) {
         reject({})
-      } else if (rule === undefined) {
-        reslove({ to: to })
+      } else if (rule === undefined || rule === true) {
+        reslove(true)
       } else {
-        reslove({ to: rule })
+        reslove(rule)
       }
     }
     const guardReturn = guard.call(undefined, to, from, next)

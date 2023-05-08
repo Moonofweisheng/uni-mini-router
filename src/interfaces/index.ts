@@ -1,7 +1,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:48:09
- * @LastEditTime: 2023-04-27 15:52:35
+ * @LastEditTime: 2023-05-08 13:52:46
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\interfaces\index.ts
@@ -18,7 +18,7 @@ export interface Router {
   route: Ref<Route> // 当前路由信息
   routes: any // 路由表
   readonly guardHooks: GuardHooksConfig // 守卫钩子
-  back(level?: number): void
+  back(to?: RouteBackLocation): void
   push(to: RouteLocationRaw): void
   replace(to: RouteLocationRaw): void
   replaceAll(to: RouteLocationRaw): void
@@ -28,7 +28,7 @@ export interface Router {
   install(App: any): void
 }
 
-export type BeforeEachGuard = (to: Route, from: Route, next: (rule?: Route | boolean) => void) => void // 全局前置守卫函数
+export type BeforeEachGuard = (to: Route, from: Route, next: (rule?: NextRouteLocationRaw | boolean) => void) => void // 全局前置守卫函数
 export type AfterEachGuard = (to: Route, from: Route) => void // 全局后置守卫函数
 
 export interface GuardHooksConfig {
@@ -37,11 +37,11 @@ export interface GuardHooksConfig {
 }
 
 export interface RouteLocationBase {
-  animationType?: startAnimationType | endAnimationType // 动画类型
+  animationType?: StartAnimationType | EndAnimationType // 动画类型
   animationDuration?: number // 动画时间
 }
 
-export type startAnimationType =
+export type StartAnimationType =
   | 'slide-in-right'
   | 'slide-in-left'
   | 'slide-in-top'
@@ -51,7 +51,7 @@ export type startAnimationType =
   | 'zoom-out'
   | 'zoom-fade-out'
   | 'none'
-export type endAnimationType =
+export type EndAnimationType =
   | 'slide-out-right'
   | 'slide-out-left'
   | 'slide-out-top'
@@ -64,17 +64,24 @@ export type endAnimationType =
 
 // name与params组合
 export interface RouteNameLocation extends RouteLocationBase {
-  name: string
-  params?: Record<string, string>
+  name: string // 路由名称
+  params?: Record<string, string> // 参数
 }
 
 // path与query组合
 export interface RoutePathLocation extends RouteLocationBase {
-  path: string
-  query?: Record<string, string>
+  path: string // 路由路径
+  query?: Record<string, string> // 参数
 }
+
+// back方法参数
+export interface RouteBackLocation extends RouteLocationBase {
+  animationType: EndAnimationType
+  delta?: number // 返回的页面数，如果 delta 大于现有页面数，则返回到首页。
+}
+
 export type RouteUrlLocation = string
-export type RouteLocationRaw = RouteUrlLocation | RouteNameLocation | RoutePathLocation
+export type RouteLocationRaw = RouteUrlLocation | RouteNameLocation | RoutePathLocation // 路由位置
 
 // 创建路由实例的选项
 export interface RouterOptions {
@@ -84,17 +91,51 @@ export interface RouterOptions {
 // 路由信息
 export interface Route {
   fullPath?: string
+  aliasPath?: string
   name?: string
   path?: string
   query?: Record<string, any>
   params?: Record<string, any>
 }
-// export interface RouteRule {
-//   path: string // pages.json中的path 必须加上 '/' 开头
-//   name?: string // 命名路由
-//   meta?: any // 其他格外参数
-//   [propName: string]: any
-// }
+// 导航类型
 export type NAVTYPE = 'push' | 'replace' | 'replaceAll' | 'pushTab' | 'back'
+export type NavMethodType = 'navigateTo' | 'redirectTo' | 'reLaunch' | 'switchTab' | 'navigateBack'
+
+// 导航类型枚举
+export enum NavTypeEnum {
+  push = 'navigateTo',
+  replace = 'redirectTo',
+  replaceAll = 'reLaunch',
+  pushTab = 'switchTab',
+  back = 'navigateBack'
+}
+
+// 导航类型枚举反向映射
+// export enum NavTypeReverseEnum {
+//   navigateTo = 'push',
+//   redirectTo = 'replace',
+//   reLaunch = 'replaceAll',
+//   switchTab = 'pushTab',
+//   navigateBack = 'back'
+// }
 export type HookType = 'beforeHooks' | 'afterHooks'
-export const NavMethod = ['navigateTo', 'redirectTo', 'reLaunch', 'switchTab', 'navigateBack']
+export const NavMethod: NavMethodType[] = ['navigateTo', 'redirectTo', 'reLaunch', 'switchTab', 'navigateBack']
+
+// next方法
+// name与params组合
+export interface NextRouteNameLocation extends RouteNameLocation {
+  navType?: NAVTYPE // 导航类型
+}
+
+// path与query组合
+export interface NextRoutePathLocation extends RoutePathLocation {
+  navType?: NAVTYPE // 导航类型
+}
+
+// back方法参数
+export interface NextRouteBackLocation extends RouteBackLocation {
+  navType?: NAVTYPE // 导航类型
+}
+
+// Next方法入参
+export type NextRouteLocationRaw = RouteUrlLocation | NextRouteNameLocation | NextRoutePathLocation | NextRouteBackLocation

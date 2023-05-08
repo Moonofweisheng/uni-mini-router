@@ -1,7 +1,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:48:09
- * @LastEditTime: 2023-04-27 13:10:08
+ * @LastEditTime: 2023-05-08 13:33:29
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\index.ts
@@ -9,7 +9,7 @@
  */
 import { routeKey, routerKey } from './symbols'
 import { getCurrentPageRoute, navjump, registerEachHooks, rewriteNavMethod, saveCurrRouteByCurrPage } from './router'
-import type { AfterEachGuard, BeforeEachGuard, Route, RouteLocationRaw, Router, RouterOptions } from './interfaces/index'
+import type { AfterEachGuard, BeforeEachGuard, Route, RouteBackLocation, RouteLocationRaw, Router, RouterOptions } from './interfaces/index'
 import { shallowRef, unref } from 'vue'
 import { isEmptyObject } from './utils'
 /**
@@ -35,8 +35,8 @@ export function createRouter(options: RouterOptions): Router {
     pushTab(to: RouteLocationRaw) {
       return navjump(to, this, 'pushTab')
     },
-    back(level: number = 1) {
-      return uni.navigateBack({ delta: level })
+    back(to?: RouteBackLocation) {
+      return uni.navigateBack(to)
     },
     beforeEach(userGuard: BeforeEachGuard) {
       registerEachHooks(router, 'beforeHooks', userGuard)
@@ -52,18 +52,16 @@ export function createRouter(options: RouterOptions): Router {
       app.mixin({
         beforeCreate() {
           if (this.$mpType === 'page') {
-            saveCurrRouteByCurrPage(router)
             if (router.guardHooks.afterHooks && router.guardHooks.afterHooks[0]) {
               const from: Route = router.route.value
               const to: Route = getCurrentPageRoute(router) // 当前页面路由信息
               router.guardHooks.afterHooks[0].call(null, to, from)
             }
+            saveCurrRouteByCurrPage(router)
           }
         },
         onLoad(option: Record<string, any> | undefined) {
-          const query: Record<string, any> | undefined = router.route.value.query // query
-          const params: Record<string, any> | undefined = router.route.value.params // params
-          if (!isEmptyObject(option) && isEmptyObject(query) && isEmptyObject(params)) {
+          if (!isEmptyObject(option) && isEmptyObject(router.route.value.query) && isEmptyObject(router.route.value.params)) {
             router.route.value = { ...router.route.value, query: option }
           }
         }

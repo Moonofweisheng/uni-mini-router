@@ -283,6 +283,7 @@ router.beforeEach((to, from, next) => {
   - `next()`: 执行默认路由跳转逻辑
   - `next(false)`: 终止跳转逻辑
   - `next({ path: '/' })`: 跳转到不同的页面
+  - `next({ path: '/', navType: 'replaceAll' })`: 改变当前跳转类型并跳转到不同的页面，可以通过`navType`指定新的跳转类型。（实例为中断当前导航，改用`replaceAll`方法跳转到新的页面）
 
 #### 全局后置钩子 afterEach
 你也可以注册全局后置钩子，然而和守卫不同的是，这些钩子不会接受 next 函数也不会改变导航本身
