@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.9...v0.0.10) (2023-05-08)
+
+
+### Bug Fixes
+
+* 🐛 修复全局后置守卫to和from都指向当前路由信息的问题 ([af71619](https://gitee.com/fant-mini/uni-mini-router/commit/af7161983768d69ca7ff420ffeb80e905af121ae))
+* 🐛 修复全局前置导航守卫next无法指向跳转类型不同的页面的问题 ([53b51ac](https://gitee.com/fant-mini/uni-mini-router/commit/53b51acff62c0179a757b493ab0521d0e8a35811))
+
 ### [0.0.9](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.8...v0.0.9) (2023-05-06)
 
 ### [0.0.8](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.7...v0.0.8) (2023-05-06)
