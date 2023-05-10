@@ -11,6 +11,8 @@
 
 #### 演示项目:[vue3+vite+axios+pinia+fant-mini-plus基础模板](https://ext.dcloud.net.cn/plugin?id=11846)
 
+## 使用文档:[地址](https://fant-mini-plus.top/fant-mini-plus/uni-mini-router/introduction.html)
+
 ## 安装uni-mini-router
 
 
