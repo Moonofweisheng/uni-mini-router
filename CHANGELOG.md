@@ -1,6 +1,17 @@
-# Changelog
+# 更新日志 
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.0.12](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.11...v0.0.12) (2023-05-10)
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  增加支持AutoImport的文档，导出interfaces类型文件 ([a5f88f6](https://gitee.com/fant-mini/uni-mini-router/commit/a5f88f6785c9770eb8a1930f261ee9681b3f2c9b))
+
+
+### 🚀 Chore | 构建/工程依赖/工具
+
+* 🚀 新增.versionrc文件 ([4c09ce2](https://gitee.com/fant-mini/uni-mini-router/commit/4c09ce2ea9cbe154ad0996d10977d68873468862))
 
 ### [0.0.11](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.10...v0.0.11) (2023-05-08)
 
