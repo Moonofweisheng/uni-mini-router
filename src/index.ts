@@ -1,7 +1,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:48:09
- * @LastEditTime: 2023-05-08 13:33:29
+ * @LastEditTime: 2023-05-09 21:20:59
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\index.ts
@@ -9,7 +9,7 @@
  */
 import { routeKey, routerKey } from './symbols'
 import { getCurrentPageRoute, navjump, registerEachHooks, rewriteNavMethod, saveCurrRouteByCurrPage } from './router'
-import type { AfterEachGuard, BeforeEachGuard, Route, RouteBackLocation, RouteLocationRaw, Router, RouterOptions } from './interfaces/index'
+import type { AfterEachGuard, BeforeEachGuard, Route, RouteBackLocation, RouteLocationRaw, Router, RouterOptions } from './interfaces'
 import { shallowRef, unref } from 'vue'
 import { isEmptyObject } from './utils'
 /**
@@ -82,3 +82,4 @@ export function createRouter(options: RouterOptions): Router {
 }
 
 export * from './core'
+export * from './interfaces'

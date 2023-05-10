@@ -80,13 +80,15 @@ export default defineConfig({
 #### 声明文件`type.d.ts`
 `.d.ts`文件的作用是描述`JavaScript`库、模块或其他代码的类型声明和元数据，以便编辑器和开发者能够更好地理解和使用该代码。在编译时，`TypeScript`编译器会使用`.d.ts`文件来验证代码正确性，并帮助开发者在开发过程中提供更好的代码提示和自动补全功能。
 
+在项目src目录下（HbuilderX创建的项目可以在根目录下）创建`type.d.ts`文件。
+
 ```ts
 //type.d.ts
 declare const ROUTES: []
 ```
 
 ### 配置uni-mini-router
-项目根目录下创建router文件夹，并在该文件夹创建index.ts
+项目src目录下（HbuilderX创建的项目可以在根目录下）创建router文件夹，并在该文件夹创建index.ts
 
 #### router/index.ts
 此处的ROUTES就是[配置vite.config.ts](#配置vite.config.ts)步骤中注入的
@@ -173,7 +175,68 @@ export function createApp() {
   }
 }
 ```
+### 配置自动按需导入（可选）
+[unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)：是一个为 `Vite`、`Webpack`、`Rollup` 和 `esbuild` 按需自动导入 API，支持 `TypeScript`的插件，我们基于此插件实现自动按需导入。 
 
+不使用按需导入，则需要手动`import`
+```ts
+import { useRouter } from 'uni-mini-router'
+const router = useRouter()
+router.push('/')
+```
+
+使用按需导入后
+```ts
+const router = useRouter()
+router.push('/')
+```
+
+#### 安装`unplugin-auto-import`
+```sh
+yarn add uni-mini-router -D
+```
+
+#### 配置`unplugin-auto-import`
+详细配置方案见[unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)，这里给出支持`uni-mini-router`的简易配置
+```ts
+//vite.config.ts
+import { defineConfig } from 'vite'
+import TransformPages from 'uni-read-pages-vite'
+import uni from '@dcloudio/vite-plugin-uni'
+import AutoImport from 'unplugin-auto-import/vite'
+export default defineConfig({
+  base: './',
+  plugins: [
+    uni(),
+    AutoImport({
+      imports: [
+        'vue',
+        'uni-app',
+        'pinia',
+        {
+          from: 'uni-mini-router',
+          imports: ['createRouter', 'useRouter', 'useRoute']
+        }
+      ],
+      dts: 'src/auto-imports.d.ts', // 这里src目录必须是已存在的，如果是HbuilderX创建的项目是没有src目录的，可以配置为 dts: 'auto-imports.d.ts'
+      eslintrc: {
+        enabled: true,
+        globalsPropValue: true
+      }
+    })
+  ],
+  define: {
+    ROUTES: new TransformPages().routes
+  }
+})
+```
+#### 总结
+`unplugin-auto-import` 可以帮助我们实现按需自动导入第三方库的API，提升开发效率，但是它也同样存在一些缺点，例如：
+- 可能会影响代码可读性：自动导入模块可能会导致代码可读性降低，因为开发者可能不知道哪些模块被自动导入了。
+
+- 可能会导致性能问题：自动导入模块可能会导致性能问题，因为它需要扫描整个代码库来查找缺失的模块。
+
+所以在提升开发效率的同时也要兼顾可读性和性能问题，尽量将一些被广泛认知和使用、不用关注实现、不变的内容作为自动按需引入的对象，而项目内的代码如果自动按需引入是否会增加开发人员的心智负担，则需要我们做出相应的权衡。 
 
 ## 使用
 
@@ -298,7 +361,7 @@ router.afterEach((to, from) => {
 ```
 它对于分析、更改页面标题、声明页面等辅助功能以及许多其他事情都很有用。
 
-### API 文档
+## API 文档
 
 #### createRouter
 
