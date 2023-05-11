@@ -438,3 +438,14 @@ router.afterEach((to, from) => {
 ▸ router.back(level?: number): void
 
 关闭当前页面，返回上一页面或多级页面，相当于使用 `uni.navigateBack(OBJECT)`。
+
+## 联系我
+
+有不明白或者建议可以扫码交流
+#### QQ群
+<img  src="https://fant-mini-plus.top/img/qq.jpg
+" width="220" height="auto">
+
+#### 微信群
+<img src="https://fant-mini-plus.top/img/weixin.png
+" width="220" height="auto">
