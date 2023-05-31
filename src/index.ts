@@ -1,7 +1,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:48:09
- * @LastEditTime: 2023-05-09 21:20:59
+ * @LastEditTime: 2023-05-29 14:51:18
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\index.ts
@@ -57,12 +57,16 @@ export function createRouter(options: RouterOptions): Router {
               const to: Route = getCurrentPageRoute(router) // 当前页面路由信息
               router.guardHooks.afterHooks[0].call(null, to, from)
             }
-            saveCurrRouteByCurrPage(router)
           }
         },
         onLoad(option: Record<string, any> | undefined) {
           if (!isEmptyObject(option) && isEmptyObject(router.route.value.query) && isEmptyObject(router.route.value.params)) {
             router.route.value = { ...router.route.value, query: option }
+          }
+        },
+        onShow() {
+          if (this.$mpType === 'page') {
+            saveCurrRouteByCurrPage(router)
           }
         }
       })
