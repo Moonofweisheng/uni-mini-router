@@ -1,6 +1,21 @@
 # 更新日志 
 
 
+## [0.1.0](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.12...v0.1.0) (2023-05-31)
+
+
+### ✨ Features | 新功能
+
+* ✨ 优化 useRoute 的取值逻辑，新增在onShow周期更新route的逻辑 ([3b6bb8e](https://gitee.com/fant-mini/uni-mini-router/commit/3b6bb8e776a35872f0261c78482f9bf2e00e4f87))
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  更新README中模板的名称 ([4bc38a3](https://gitee.com/fant-mini/uni-mini-router/commit/4bc38a33bb4ef4a1157348078ad1ee1d6b5250ef))
+* ✏️  增加联系方式 ([9d581bb](https://gitee.com/fant-mini/uni-mini-router/commit/9d581bba7b5b178eedd475a931081098d6dd1fbe))
+* ✏️  增加使用uni-parse-pages生成路由表的文档 ([9fb63af](https://gitee.com/fant-mini/uni-mini-router/commit/9fb63afc8e02246db5440df898a6ac398d551ad7))
+* ✏️  增加线上文档的地址 ([a14fd70](https://gitee.com/fant-mini/uni-mini-router/commit/a14fd70fffbc856d72c60d58a876628af36fe443))
+
 ### [0.0.12](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.11...v0.0.12) (2023-05-10)
 
 
