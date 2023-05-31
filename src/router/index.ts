@@ -2,7 +2,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:56:28
- * @LastEditTime: 2023-05-31 16:29:03
+ * @LastEditTime: 2023-05-31 17:25:43
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\router\index.ts
@@ -140,7 +140,7 @@ export function getRouteByPath(path: string, router: Router): Route {
   const route: Route = router.routes.find((route: Route) => {
     return route.path === path || route.aliasPath === path
   })
-  return route
+  return JSON.parse(JSON.stringify(route))
 }
 
 /**
