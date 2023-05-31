@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+### [0.1.1](https://gitee.com/fant-mini/uni-mini-router/compare/v0.1.0...v0.1.1) (2023-05-31)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 🐛 修复当前路由信息修改后会影响路由表信息的问题 ([c8f076e](https://gitee.com/fant-mini/uni-mini-router/commit/c8f076e0cd41f26788d2f8f76fda18eed8fd759c))
+
 ## [0.1.0](https://gitee.com/fant-mini/uni-mini-router/compare/v0.0.12...v0.1.0) (2023-05-31)
 
 
