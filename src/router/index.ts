@@ -2,7 +2,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:56:28
- * @LastEditTime: 2023-05-31 17:25:43
+ * @LastEditTime: 2023-07-06 17:38:29
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\router\index.ts
@@ -222,13 +222,23 @@ export function guardToPromiseFn(guard: BeforeEachGuard, to: Route, from: Route)
     let guardCall = Promise.resolve(guardReturn)
     if (guard.length < 3) guardCall = guardCall.then(next)
     if (guard.length > 2) {
-      if (!next._called) {
-        const message = `The "next" callback was never called inside of ${
-          guard.name ? '"' + guard.name + '"' : ''
-        }:\n${guard.toString()}\n. If you are returning a value instead of calling "next", make sure to remove the "next" parameter from your function.`
-        console.warn(message)
-        reject(new Error('Invalid navigation guard'))
-        return
+      const message = `The "next" callback was never called inside of ${
+        guard.name ? '"' + guard.name + '"' : ''
+      }:\n${guard.toString()}\n. If you are returning a value instead of calling "next", make sure to remove the "next" parameter from your function.`
+      if (guardReturn !== null && typeof guardReturn === 'object' && 'then' in guardReturn!) {
+        guardCall = guardCall.then((resolvedValue) => {
+          if (!next._called) {
+            console.warn(message)
+            return Promise.reject(new Error('Invalid navigation guard'))
+          }
+          return resolvedValue
+        })
+      } else if (guardReturn !== undefined) {
+        if (!next._called) {
+          console.warn(message)
+          reject(new Error('Invalid navigation guard'))
+          return
+        }
       }
     }
     guardCall.catch((err) => reject(err))

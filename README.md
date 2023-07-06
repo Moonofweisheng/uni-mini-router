@@ -7,8 +7,6 @@
 
 总之，如果你在`uni-app`开发过程中需要使用到路由功能，可以考虑使用`uni-mini-router`来简化你的开发工作。
 
-值得注意的是，`uni-mini-router`需要与[uni-read-pages-vite](https://www.npmjs.com/package/uni-read-pages-vite)搭配使用。`uni-read-pages-vite`用于获取路由表。
-
 #### 演示项目:[Vue3-Uni-TS-Template基础模板](https://ext.dcloud.net.cn/plugin?id=11846)
 
 ## 使用文档:[地址](https://fant-mini-plus.top/fant-mini-plus/uni-mini-router/introduction.html)

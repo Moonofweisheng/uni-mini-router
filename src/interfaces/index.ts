@@ -1,7 +1,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:48:09
- * @LastEditTime: 2023-05-08 13:52:46
+ * @LastEditTime: 2023-07-06 16:07:30
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\interfaces\index.ts
@@ -28,7 +28,7 @@ export interface Router {
   install(App: any): void
 }
 
-export type BeforeEachGuard = (to: Route, from: Route, next: (rule?: NextRouteLocationRaw | boolean) => void) => void // 全局前置守卫函数
+export type BeforeEachGuard = (to: Route, from: Route, next: (rule?: NextRouteLocationRaw | boolean) => void) => void | Promise<void> // 全局前置守卫函数
 export type AfterEachGuard = (to: Route, from: Route) => void // 全局后置守卫函数
 
 export interface GuardHooksConfig {
