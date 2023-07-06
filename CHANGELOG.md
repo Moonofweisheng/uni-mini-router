@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+### [0.1.2](https://gitee.com/fant-mini/uni-mini-router/compare/v0.1.1...v0.1.2) (2023-07-06)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 🐛 修复在前置导航守卫中使用async/await导致无法跳转的问题 ([f385b9e](https://gitee.com/fant-mini/uni-mini-router/commit/f385b9e5558a7174de05174031666574870282d4))
+
 ### [0.1.1](https://gitee.com/fant-mini/uni-mini-router/compare/v0.1.0...v0.1.1) (2023-05-31)
 
 
