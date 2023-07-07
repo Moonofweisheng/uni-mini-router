@@ -2,7 +2,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:56:28
- * @LastEditTime: 2023-07-06 17:38:29
+ * @LastEditTime: 2023-07-07 10:12:55
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\router\index.ts
@@ -233,7 +233,7 @@ export function guardToPromiseFn(guard: BeforeEachGuard, to: Route, from: Route)
           }
           return resolvedValue
         })
-      } else if (guardReturn !== undefined) {
+      } else {
         if (!next._called) {
           console.warn(message)
           reject(new Error('Invalid navigation guard'))
