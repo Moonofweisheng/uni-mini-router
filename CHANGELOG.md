@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+### [0.1.3](https://gitee.com/fant-mini/uni-mini-router/compare/v0.1.2...v0.1.3) (2023-07-07)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 🐛 修复前置导航守卫非async时失效的问题 ([024ea1e](https://gitee.com/fant-mini/uni-mini-router/commit/024ea1e00b2257a5a6cd1d0ac20b22aa9b2095bf))
+
 ### [0.1.2](https://gitee.com/fant-mini/uni-mini-router/compare/v0.1.1...v0.1.2) (2023-07-06)
 
 
