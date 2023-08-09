@@ -2,7 +2,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:56:28
- * @LastEditTime: 2023-07-07 10:12:55
+ * @LastEditTime: 2023-08-09 15:49:23
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\router\index.ts
@@ -25,6 +25,15 @@ import {
 
 import { beautifyUrl, getUrlParams, queryStringify, setUrlParams } from '../utils'
 
+// 保留uni默认的NavMethod
+const navMethods: Record<string, Function> = {
+  navigateTo: uni.navigateTo,
+  redirectTo: uni.redirectTo,
+  reLaunch: uni.reLaunch,
+  switchTab: uni.switchTab,
+  navigateBack: uni.navigateBack
+}
+
 /**
  * 跳转至指定路由
  * @param to 目标路径
@@ -36,16 +45,16 @@ export function navjump(to: RouteLocationRaw, router: Router, navType: NAVTYPE) 
   const url: string = getRoutePath(to, router)
   switch (navType) {
     case 'push':
-      uni.navigateTo({ url: url })
+      navMethods.navigateTo({ url: url })
       break
     case 'replace':
-      uni.redirectTo({ url: url })
+      navMethods.redirectTo({ url: url })
       break
     case 'pushTab':
-      uni.switchTab({ url: url })
+      navMethods.switchTab({ url: url })
       break
     case 'replaceAll':
-      uni.reLaunch({ url: url })
+      navMethods.reLaunch({ url: url })
       break
     default:
       throw new Error('无效的路由类型，请确保提供正确的路由类型')
@@ -60,7 +69,7 @@ export function navjump(to: RouteLocationRaw, router: Router, navType: NAVTYPE) 
  * @param router
  * @returns
  */
-function getRoutePath(to: RouteLocationRaw, router: Router): string {
+export function getRoutePath(to: RouteLocationRaw, router: Router): string {
   let url: string = '' // 路径
   let query: Record<string, string> = {}
   if (typeof to === 'string') {
@@ -166,7 +175,7 @@ const oldMethods: Record<string, Function> = {
  */
 export function rewriteNavMethod(router: Router) {
   NavMethod.forEach((name) => {
-    ;(uni as any)[name] = function (options: any) {
+    navMethods[name] = function (options: any) {
       if (name === 'navigateBack') {
         oldMethods[name](options)
       } else {
