@@ -1,6 +1,18 @@
 # 更新日志 
 
 
+### [0.1.4](https://gitee.com/fant-mini/uni-mini-router/compare/v0.1.3...v0.1.4) (2023-08-09)
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  增加联系方式 ([271c3db](https://gitee.com/fant-mini/uni-mini-router/commit/271c3db37fe4c95444d1f3676f8ea7b8948b50d0))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 🐛 修复前置导航守卫H5端打包后不执行的问题 ([13a1c11](https://gitee.com/fant-mini/uni-mini-router/commit/13a1c1180c9d4f53486fe275dd01071a1fa3240b))
+
 ### [0.1.3](https://gitee.com/fant-mini/uni-mini-router/compare/v0.1.2...v0.1.3) (2023-07-07)
 
 
