@@ -42,9 +42,9 @@ export default defineConfig({
     search: {
       provider: 'algolia',
       options: {
-        appId: 'A74X2RFXSU',
-        apiKey: '6961856d63f5181bf71cb4fa3e4398d2',
-        indexName: 'uni-mini-router2',
+        appId: 'OOURGSMU49',
+        apiKey: 'ab86779c0c2d0fc6e2ba6064d6eac1f5',
+        indexName: 'uni-mini-router',
       },
     },
 
