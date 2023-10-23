@@ -41,6 +41,15 @@
 - 💪 使用 Typescript 构建，提供良好的组件类型系统.
 
 
+## 链接
+
+* [意见反馈](https://github.com/Moonofweisheng/uni-mini-router/issues)
+* [更新日志](/guide/changelog)
+* [常见问题](/guide/common-problems)
+* [Discussions 讨论区](https://github.com/Moonofweisheng/uni-mini-router/discussions)
+* [QQ 群](https://qm.qq.com/cgi-bin/qm/qr?k=O1Z3pal6StL39qHtABqR54Tb56igr90O&jump_from=webapi&authKey=MtVWfi/EQbT03wW7tKXv4bmyKYHBHtzI8VewlzSsOdxFjN0wbgNy17np9Z9yC4Z8)
+* [高颜值vue3组件库Wot Design Uni](https://wot-design-uni.netlify.app/)
+
 ## 更新日志
 
 详细更新日志见 [CHANGELOG](https://github.com/Moonofweisheng/uni-mini-router/blob/master/CHANGELOG.md).
