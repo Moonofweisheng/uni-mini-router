@@ -21,9 +21,9 @@
 
 </p>
 
-<p align="center">
-  🚀 <a href="https://wot-design-uni.cn/">文档网站 (Github)</a>&nbsp;
-  🔥 <a href="https://wot-design-uni.netlify.app/">文档网站 (Gitee)</a>
+<p align="left">
+  🚀 <a href="https://moonofweisheng.github.io/uni-mini-router/">文档网站 (Github)</a>&nbsp;
+  🔥 <a href="https://moonofweisheng.gitee.io/uni-mini-router/">文档网站 (Gitee)</a>
 </p>
 
 ---

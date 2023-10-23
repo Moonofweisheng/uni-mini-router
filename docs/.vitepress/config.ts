@@ -1,7 +1,7 @@
 /*
  * @Author: weisheng
  * @Date: 2023-07-27 10:26:09
- * @LastEditTime: 2023-10-23 11:06:03
+ * @LastEditTime: 2023-10-23 13:33:23
  * @LastEditors: weisheng
  * @Description: 
  * @FilePath: \uni-mini-router\docs\.vitepress\config.ts
@@ -14,12 +14,12 @@ export default defineConfig({
   title: `Uni Mini Router`,
   description: '一个基于vue3和Typescript的轻量级uni-app路由库',
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', href: '/uni-mini-router/favicon.ico' }],
     ['script', {}, `
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?18377b8bd73d88647503887f67ccf27f";
+      hm.src = "https://hm.baidu.com/hm.js?43e96134ee5fd0ab364786f7a00a1048";
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
@@ -57,7 +57,7 @@ export default defineConfig({
       { text: '捐赠作者', link: '/reward/reward', activeMatch: '/reward/' },
       {
         text: 'Wot Design Uni',
-        link: 'https://github.com/Moonofweisheng/uni-mini-router'
+        link: 'https://wot-design-uni.netlify.app/'
       },
     ],
     sidebar: {
