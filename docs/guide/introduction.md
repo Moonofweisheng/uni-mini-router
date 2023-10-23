@@ -27,17 +27,3 @@
 ## 开源协议
 
 本项目遵循 MIT 协议。
-
-<script>
-import WxQrcode from '/wx.jpg'
-import AlipayQrcode from '/alipay.png'
-
-export default {
-  data () {
-    return {
-      WxQrcode,
-      AlipayQrcode
-    }
-  }
-}
-</script>
