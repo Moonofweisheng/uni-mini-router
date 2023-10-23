@@ -1,7 +1,7 @@
 /*
  * @Author: weisheng
  * @Date: 2023-07-27 10:26:09
- * @LastEditTime: 2023-10-22 23:55:17
+ * @LastEditTime: 2023-10-23 11:06:03
  * @LastEditors: weisheng
  * @Description: 
  * @FilePath: \uni-mini-router\docs\.vitepress\config.ts
@@ -10,6 +10,7 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
+  base: "/uni-mini-router/",
   title: `Uni Mini Router`,
   description: '一个基于vue3和Typescript的轻量级uni-app路由库',
   head: [
