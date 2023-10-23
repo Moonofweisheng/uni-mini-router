@@ -1,6 +1,17 @@
 # 更新日志 
 
 
+### [0.1.5](https://gitee.com/fant-mini/uni-mini-router/compare/v0.1.4...v0.1.5) (2023-10-23)
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  更新文档地址 ([f19de73](https://gitee.com/fant-mini/uni-mini-router/commit/f19de73ca0e76747a07f8fb2b997f8defbc29587))
+* ✏️  文档建站 ([f3c6513](https://gitee.com/fant-mini/uni-mini-router/commit/f3c6513cb047241a0992e2c10a0405f78d9c3154))
+* ✏️  移除文档中的不可用图片 ([ac3b93b](https://gitee.com/fant-mini/uni-mini-router/commit/ac3b93b48ed028752085c013c358b56b4d328c45))
+* ✏️  增加相关链接 ([c03a7e0](https://gitee.com/fant-mini/uni-mini-router/commit/c03a7e06fea6b691df831dafee77f41b1a9d0f5d))
+* ✏️  README中增加显示文档链接 ([21e4ce1](https://gitee.com/fant-mini/uni-mini-router/commit/21e4ce19368f1cc019154e8f545db3a43976c902))
+
 ### [0.1.4](https://gitee.com/fant-mini/uni-mini-router/compare/v0.1.3...v0.1.4) (2023-08-09)
 
 
