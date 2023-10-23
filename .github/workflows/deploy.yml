@@ -59,7 +59,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: 'refs/heads/main' # 可能需要根据你的默认分支名称进行调整
+          ref: 'refs/heads/master' # 可能需要根据你的默认分支名称进行调整
       - name: Create gh-pages branch
         run: |
           git checkout --orphan gh-pages
