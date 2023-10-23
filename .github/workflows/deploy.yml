@@ -60,21 +60,21 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: 'refs/heads/master' # 可能需要根据你的默认分支名称进行调整
-      - name: Create gh-pages branch
+  
+      - name: Prepare gh-pages branch
         run: |
+          if [[ `git branch --list gh-pages` ]]; then
+            git branch -D gh-pages
+          fi
           git checkout --orphan gh-pages
           git reset --hard
-          git push origin gh-pages
-          git branch -D gh-pages
-      - name: Create and Checkout Empty gh-pages branch
-        run: |
-          git checkout --orphan gh-pages
-          git reset --hard
+  
       - name: Copy files to gh-pages branch
         run: |
           cp -r docs/.vitepress/dist/* .
           git add -A
           git commit -m "Add files for gh-pages branch"
+  
       - name: Push to gh-pages branch
         run: |
           git push origin gh-pages
