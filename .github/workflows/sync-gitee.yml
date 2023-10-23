@@ -2,10 +2,7 @@ name: Sync to Gitee
 
 on:
   push:
-    branches:
-      - gh-pages
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    branches: [gh-pages]
 
   # Sync to gitee everyday
   schedule:
