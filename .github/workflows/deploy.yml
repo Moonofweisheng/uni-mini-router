@@ -51,12 +51,40 @@ jobs:
         with:
           path: docs/.vitepress/dist
 
+  # Create gh-pages branch job
+  create-gh-pages-branch:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: 'refs/heads/main' # 可能需要根据你的默认分支名称进行调整
+      - name: Create gh-pages branch
+        run: |
+          git checkout --orphan gh-pages
+          git reset --hard
+          git push origin gh-pages
+          git branch -D gh-pages
+      - name: Create and Checkout Empty gh-pages branch
+        run: |
+          git checkout --orphan gh-pages
+          git reset --hard
+      - name: Copy files to gh-pages branch
+        run: |
+          cp -r docs/.vitepress/dist/* .
+          git add -A
+          git commit -m "Add files for gh-pages branch"
+      - name: Push to gh-pages branch
+        run: |
+          git push origin gh-pages
+
   # Deployment job
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
+    needs: create-gh-pages-branch # 修改此处以依赖于新创建的作业
     runs-on: ubuntu-latest
     name: Deploy
     steps:
