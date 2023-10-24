@@ -49,6 +49,7 @@
 * [Discussions 讨论区](https://github.com/Moonofweisheng/uni-mini-router/discussions)
 * [QQ 群](https://qm.qq.com/cgi-bin/qm/qr?k=O1Z3pal6StL39qHtABqR54Tb56igr90O&jump_from=webapi&authKey=MtVWfi/EQbT03wW7tKXv4bmyKYHBHtzI8VewlzSsOdxFjN0wbgNy17np9Z9yC4Z8)
 * [高颜值vue3组件库 Wot Design Uni](https://wot-design-uni.netlify.app/)
+* [整合uni-mini-router的起手项目](https://github.com/Moonofweisheng/wot-starter)
 
 ## 更新日志
 
