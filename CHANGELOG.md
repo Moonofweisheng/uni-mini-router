@@ -1,6 +1,19 @@
 # 更新日志 
 
 
+### [0.1.6](https://github.com/Moonofweisheng/uni-mini-router/compare/v0.1.5...v0.1.6) (2023-12-21)
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  文档增加Algolia搜索 ([840a2aa](https://github.com/Moonofweisheng/uni-mini-router/commit/840a2aa6482d0064f344de9667e9907497611f20))
+* ✏️  增加链接uni-mini-router的起手项目 ([e83b7fe](https://github.com/Moonofweisheng/uni-mini-router/commit/e83b7fec436f2491f58b0372b5cb56c7371d6589))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 🐛 修复编译到快手小程序getRouteByPath因为路径匹配错误异常的情况 ([40ee469](https://github.com/Moonofweisheng/uni-mini-router/commit/40ee469311174b85adec3c850a2246a8cbd4c660)), closes [#8](https://github.com/Moonofweisheng/uni-mini-router/issues/8)
+
 ### [0.1.5](https://gitee.com/fant-mini/uni-mini-router/compare/v0.1.4...v0.1.5) (2023-10-23)
 
 
