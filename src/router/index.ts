@@ -2,7 +2,7 @@
 /*
  * @Author: 徐庆凯
  * @Date: 2023-03-13 15:56:28
- * @LastEditTime: 2023-08-09 15:49:23
+ * @LastEditTime: 2023-12-21 21:37:34
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: \uni-mini-router\src\router\index.ts
@@ -145,7 +145,7 @@ export function getCurrentPageRoute(router: Router): Route {
  * @returns 路由信息
  */
 export function getRouteByPath(path: string, router: Router): Route {
-  path = path.split('?')[0]
+  path = beautifyUrl(path.split('?')[0])
   const route: Route = router.routes.find((route: Route) => {
     return route.path === path || route.aliasPath === path
   })
