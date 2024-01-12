@@ -23,7 +23,7 @@
 
 <p align="left">
   🚀 <a href="https://moonofweisheng.github.io/uni-mini-router/">文档网站 (Github)</a>&nbsp;
-  🔥 <a href="https://moonofweisheng.gitee.io/uni-mini-router/">文档网站 (Gitee)</a>
+  🔥 <a href="https://wot-design-uni.gitee.io/uni-mini-router/">文档网站 (Gitee)</a>
 </p>
 
 ---
