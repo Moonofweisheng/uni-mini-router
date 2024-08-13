@@ -36,11 +36,11 @@ npm i add uni-parse-pages --save
 ```
 
 ```bash [yarn]
-yarn add add uni-parse-pages -D
+yarn add uni-parse-pages -D
 ```
 
 ```bash [pnpm]
-pnpm add add uni-parse-pages -D
+pnpm add uni-parse-pages -D
 ```
 :::
 
@@ -53,11 +53,11 @@ npm i add uni-read-pages-vite --save
 ```
 
 ```bash [yarn]
-yarn add add uni-read-pages-vite -D
+yarn add uni-read-pages-vite -D
 ```
 
 ```bash [pnpm]
-pnpm add add uni-read-pages-vite -D
+pnpm add uni-read-pages-vite -D
 ```
 :::
 
