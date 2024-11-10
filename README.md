@@ -47,8 +47,8 @@
 * [更新日志](https://moonofweisheng.gitee.io/uni-mini-router/guide/changelog)
 * [常见问题](https://moonofweisheng.gitee.io/uni-mini-router/guide/common-problems)
 * [Discussions 讨论区](https://github.com/Moonofweisheng/uni-mini-router/discussions)
-* [高颜值vue3组件库 Wot Design Uni](https://wot-design-uni.netlify.app/)
-* [整合uni-mini-router的起手项目](https://github.com/Moonofweisheng/wot-starter)
+* [高颜值vue3组件库 Wot Design Uni](https://wot-design-uni.cn/)
+* [整合uni-mini-router的起手项目](https://github.com/Moonofweisheng/wot-demo)
 
 ## 更新日志
 

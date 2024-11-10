@@ -1,6 +1,10 @@
 # 安装
 本节介绍如何在`uni-app`项目中安装`Uni Mini Router`和生成路由表的插件`uni-read-pages-vite`或`uni-read-pages`。
 
+::: tips
+推荐使用[整合uni-mini-router的起手项目](https://github.com/Moonofweisheng/wot-demo)，该起手项目已经集成了`uni-mini-router`和`uni-read-pages-vite`，可以直接使用，配置方案也可参考。
+:::
+
 
 ::: code-group
 ```bash [npm]
