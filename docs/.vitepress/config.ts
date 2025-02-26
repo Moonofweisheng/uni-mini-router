@@ -1,20 +1,20 @@
 /*
  * @Author: weisheng
  * @Date: 2023-07-27 10:26:09
- * @LastEditTime: 2023-10-23 13:33:23
+ * @LastEditTime: 2025-02-26 23:33:48
  * @LastEditors: weisheng
  * @Description: 
- * @FilePath: \uni-mini-router\docs\.vitepress\config.ts
+ * @FilePath: /uni-mini-router/docs/.vitepress/config.ts
  * 记得注释
  */
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
-  base: "/uni-mini-router/",
+  base: process.env.BASE_URL || "/uni-mini-router/",
   title: `Uni Mini Router`,
   description: '一个基于vue3和Typescript的轻量级uni-app路由库',
   head: [
-    ['link', { rel: 'icon', href: '/uni-mini-router/favicon.ico' }],
+    ['link', { rel: 'icon', href: `${process.env.BASE_URL || "/uni-mini-router/"}favicon.ico` }],
     ['script', {}, `
     var _hmt = _hmt || [];
     (function() {
@@ -96,10 +96,6 @@ export default defineConfig({
           text: '捐赠作者',
           link: '/reward/reward',
         },
-        // {
-        //   text: '榜上有名',
-        //   link: '/reward/donor',
-        // },
       ]
     }
     
