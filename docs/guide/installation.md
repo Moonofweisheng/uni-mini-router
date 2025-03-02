@@ -69,7 +69,7 @@ pnpm add add uni-read-pages-vite -D
 ## 配置路由表
 
 :::warning 关于本步骤
-在使用`uni-read-pages-vite`生成路由表时需要进行此项配置，而使用`uni-read-pages`则不需要。
+在使用`uni-read-pages-vite`生成路由表时需要进行此项配置，而使用`uni-parse-pages`则不需要。
 :::
 
 
