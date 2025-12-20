@@ -10,6 +10,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
 import { Ref } from 'vue'
+import { GlobalStyle } from '@uni-helper/vite-plugin-uni-pages'
 
 /**
  * Router instance.
@@ -96,6 +97,10 @@ export interface Route {
   path?: string
   query?: Record<string, any>
   params?: Record<string, any>
+  type?: string
+  style?: GlobalStyle
+  needLogin?: boolean
+  [x: string]: any;
 }
 // 导航类型
 export type NAVTYPE = 'push' | 'replace' | 'replaceAll' | 'pushTab' | 'back'
