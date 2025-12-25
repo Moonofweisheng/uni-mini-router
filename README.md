@@ -1,3 +1,7 @@
+# 迁移提示：本插件已迁移至[my-uni 摸鱼uni插件库](https://github.com/wot-ui/my-uni)继续维护。
+
+
+
 # uni-mini-router
 
 <p align="left">
@@ -58,6 +62,7 @@
 ## License
 
 [MIT](https://github.com/Moonofweisheng/uni-mini-router/blob/master/LICENSE)
+
 
 
 
